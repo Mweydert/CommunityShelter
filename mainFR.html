@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="shortcut icon" type="image/jpeg" href="http://img15.hostingpics.net/thumbs/mini_552004faviconLogo.jpg">
+  <meta charset="utf-8">
+  <!-- Acces au Design de Materiel Design Lite -->
+  <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-pink.min.css">
+  <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+  <!-- On fait ici la configuration du design de notre map en % de la page pour l'adaptabilité à la taille de l'écran automatique -->
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+
+  <!--<meta name="viewport" content="initial-scale=1.0"> -->
+  <!-- <style>
+  html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+#map {
+height: 50%;
+}
+</style> -->
+
+<style type="text/css">
+html, body { height: 100%; margin: 0; padding: 0; }
+#map { height: 60%; width : 100%; } /* Taille et largeur de la map proportionnelle au body définit au dessus */
+
+/*Partie design pour l'utilisation de Geocode*/
+#floating-panel {
+        position: absolute;
+        top: 10px;
+        left: 25%;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+      }
+
+
+</style>
+
+</head>
+
+<body>
+
+  <!-- Début du layout transparant-->
+  <style>
+  .demo-layout-transparent {
+    background: url('../assets/demos/transparent.jpg') center / cover;
+  }
+  .demo-layout-transparent .mdl-layout__header,
+  .demo-layout-transparent .mdl-layout__drawer-button {
+    /* This background is dark, so we set text to white. Use 87% black instead if
+    your background is light. */
+    color: black;
+  }
+
+  #logo{
+    position: fixed;
+    margin-left: -80px;
+    margin-top: -20px;
+  }
+
+  </style>
+
+  <div class="demo-layout-transparent mdl-layout mdl-js-layout" style="background-image:url(images/BGTripAdvisorFlat1.jpg);"> <!--Ici on modifie le Background de notre page toute entière qui va s'adapter selon la taille de notre fenêtre -->
+    <header class="mdl-layout__header mdl-layout__header mdl-color--white">
+      <div class="mdl-layout__header-row">
+        <span class="home">
+          <form action="/humanitarian/fr" method="get">
+          <a href="/humanitarian/fr">
+            <img id="logo" src="http://img15.hostingpics.net/thumbs/mini_530722logoCS30.jpg"/>
+          </a>
+          </form>
+        </span>
+        <!-- Title -->
+        <span class="mdl-layout-title">Community Shelter</span>
+        <!-- Add spacer, to align navigation to the right -->
+        <div class="mdl-layout-spacer"></div>
+        <!-- Navigation -->
+        <nav class="mdl-navigation">
+
+<!-- Ici on rajoute style="background:#5882FA" Si l'on souhaite changer la couleur du BG du Texte, sinon si on souhaite changer la couleur du texte on met : style="color:#5882FA"-->
+
+          <form action="/humanitarian/en" method="get">
+            <a class="mdl-navigation__link" style="color:#34495E"  href="/humanitarian/en">English</a>
+          </form>
+
+          <form action="/humanitarian/fr" method="get">
+            <a class="mdl-navigation__link" style="color:#34495E" href="/humanitarian/fr">Français</a>
+          </form>
+
+          <form action="/humanitarian/ger" method="get">
+            <a class="mdl-navigation__link" style="color:#34495E" href="/humanitarian/ger">Deutch</a>
+          </form>
+
+          <form action="/humanitarian/spa" method="get">
+            <a class="mdl-navigation__link" style="color:#34495E"  href="/humanitarian/spa">Español</a>
+          </form>
+
+        </nav>
+      </div>
+    </header>
+
+    <!-- Fin du layout transparant-->
+
+  <!--  <script>
+    /*var map;*/
+    function initMap() {
+    /*  map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 48.853, lng: 2.35},
+        zoom: 8 */
+        var myLatLng = {lat: 48.853, lng: 2.35};
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 15,
+          center: myLatLng
+        });
+
+        var marker = new google.maps.Marker({
+          position: myLatLng,
+          map: map,
+          title: 'Hello World!'
+        });
+
+    }
+  </script> -->
+
+  <div id="floating-panel">
+        <input id="address" type="textbox" value="Sydney, NSW">
+        <input id="submit" type="button" value="Geocode">
+      </div>
+  <div id="map"></div>
+
+  <script>
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 15,
+          center: {lat: 48.853, lng: 2.35}
+        });
+        var geocoder = new google.maps.Geocoder();
+
+        document.getElementById('submit').addEventListener('click', function() {
+          geocodeAddress(geocoder, map);
+        });
+      }
+
+      function geocodeAddress(geocoder, resultsMap) {
+        var address = document.getElementById('address').value;
+        geocoder.geocode({'address': address}, function(results, status) {
+          if (status === google.maps.GeocoderStatus.OK) {
+            resultsMap.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+              map: resultsMap,
+              position: results[0].geometry.location
+            });
+          } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+          }
+        });
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=[YOUR_KEY]&callback=initMap"
+    async defer></script>
+
+
+
+    <!-- DEBUT DU MAIN -->
+    <main class="mdl-layout__content">
+
+      <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--8-col">
+          <br/>
+          <br/>
+            <h3>«Une aventure humaine et utile vous attend avec nous.»</h3>
+        </div>
+
+        <div class="mdl-cell mdl-cell--4-col">
+          <h5>Si vous souhaitez enregistrer un logement veuillez cliquer sur le bouton : </h5>
+          <br/>
+
+          <form action="/humanitarian/fr/form" method="get">
+            <div class="mdl-layout-spacer"></div>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent " id="Enregistrement" style="background:#102BF7">
+              Formulaire
+            </button>
+            <div class="mdl-layout-spacer"></div>
+          </form>
+
+        </div>
+
+      </div>
+
+      </main>
+
+      <footer class="mdl-mini-footer"> <!-- Bien placé le footer ici si on veut que le footer touche la fin de page. -->
+        <!-- Ici la partie de gauche de notre footer -->
+        <div class="mdl-mini-footer__left-section">
+          <div class="mdl-logo">Title</div>
+          <ul class="mdl-mini-footer__link-list">
+            <li><a href="#">Help</a></li>
+            <li><a href="#">Privacy & Terms</a></li>
+          </ul>
+        </div>
+        <!-- Test pour mettre du texte au milieu, mais ne fonctionne qu'avec des mega footer
+        <div class="mdl-mini-footer__middle-section">
+        <div class="mdl-logo">TOURAILLE Pierre-Ugo <div>
+      </div>
+      Nénmoins après recherche on aurait pu mettre mon nom et prénom au milieu du footer, mais cela ne rendait aps très bien à l'aide de la balise <center> </center> appliquée à la zone de texte.-->
+
+      <!-- Ici la partie de droite de notre footer -->
+      <div class="mdl-mini-footer__right-section">
+        <div class="mdl-logo">MigrantsHelp</div>
+      </div>
+
+    </footer>
+
+
+  </div>
+
+</body>
+</html>

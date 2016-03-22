@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    <link rel="shortcut icon" type="image/jpeg" href="http://img15.hostingpics.net/thumbs/mini_552004faviconLogo.jpg">
+	  <meta charset="utf-8">
+	  <!-- Acces au Design de Materiel Design Lite -->
+	  <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-pink.min.css">
+	  <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
+	  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	</head>
+
+	<body>
+  <!-- Début du layout transparant-->
+  <style>
+  .demo-layout-transparent {
+    background: url('../assets/demos/transparent.jpg') center / cover;
+  }
+  .demo-layout-transparent .mdl-layout__header,
+  .demo-layout-transparent .mdl-layout__drawer-button {
+    /* This background is dark, so we set text to white. Use 87% black instead if
+    your background is light. */
+    color: black;
+  }
+
+  .my-form {
+    box-shadow: 5px 5px 5px #aaa;
+  }
+
+/* Creating a new css style for the logo on the top left part on the header */
+  #logo{
+    position: fixed;
+    margin-left: -80px;
+    margin-top: -20px;
+  }
+
+
+  </style>
+
+  <div class="demo-layout-transparent mdl-layout mdl-js-layout" style="background-image:url(images/BGTripAdvisorFlat1.jpg);"> <!--Ici on modifie le Background de notre page toute entière qui va s'adapter selon la taille de notre fenêtre -->
+    <header class="mdl-layout__header mdl-layout__header mdl-color--white">
+      <div class="mdl-layout__header-row">
+        <!-- logo on the top left part of the screen -->
+        <span class="home">
+          <form action="/humanitarian/ger" method="get">
+          <a href="/humanitarian/ger">
+            <img id="logo" src="http://img15.hostingpics.net/thumbs/mini_530722logoCS30.jpg"/>
+          </a>
+          </form>
+        </span>
+        <!-- Title -->
+        <span class="mdl-layout-title">Community Shelter</span>
+        <!-- Add spacer, to align navigation to the right -->
+        <div class="mdl-layout-spacer"></div>
+        <!-- Navigation -->
+
+        <nav class="mdl-navigation">
+
+          <form action="/humanitarian/en" method="get">
+            <a class="mdl-navigation__link" style="color:#34495E"  href="/humanitarian/en/form">English</a>
+          </form>
+
+          <form action="/humanitarian/fr" method="get">
+            <a class="mdl-navigation__link" style="color:#34495E" href="/humanitarian/fr/form">Français</a>
+          </form>
+
+          <form action="/humanitarian/ger" method="get">
+            <a class="mdl-navigation__link" style="color:#34495E" href="/humanitarian/ger/form">Deutch</a>
+          </form>
+
+          <form action="/humanitarian/spa" method="get">
+            <a class="mdl-navigation__link" style="color:#34495E"  href="/humanitarian/spa/form">Español</a>
+          </form>
+
+
+        </nav>
+      </div>
+    </header>
+
+
+
+<!-- DEBUT DU MAIN -->
+    <main class="mdl-layout__content mdl-typography--text-center">
+      <h3>Werde jetzt Mitglied und sei stolz, Teil einer helfenden Gemeinschaft zu sein !</h3>
+      <br/>
+      <br/>
+      <br/>
+
+<!-- Creating a 3 columns grid to center the form-->
+    	<div class="mdl-grid">
+
+      <div class="mdl-cell mdl-cell--5-col mdl-layout-transparent"></div>
+		  <div class="mdl-cell mdl-cell--2-col mdl-color--white my-form">
+
+		  	<form action="/humanitarian/proposition/ger" method="get">
+				  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+				    <input class="mdl-textfield__input" type="text" id="name" name ="prop-name">
+				    <label class="mdl-textfield__label" for="sample3">Vorname ...</label>
+				  </div>
+
+				  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+				    <input class="mdl-textfield__input" type="text" id="surname" name ="prop-surname">
+				    <label class="mdl-textfield__label" for="sample3">Nachname ...</label>
+				  </div>
+
+				  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+				    <input class="mdl-textfield__input" type="text" id="city" name ="prop-city">
+				    <label class="mdl-textfield__label" for="sample3">Stadt ...</label>
+				  </div>
+
+
+				  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+				    <input class="mdl-textfield__input" type="text" id="address" name ="prop-adress">
+				    <label class="mdl-textfield__label" for="sample3">Adresse ...</label>
+				  </div>
+
+				  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+				    <input class="mdl-textfield__input" type="text" id="country" name ="prop-country">
+				    <label class="mdl-textfield__label" for="sample3">Land ...</label>
+				  </div>
+
+				  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+				    <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="zipcode" name ="prop-zipcode">
+				    <label class="mdl-textfield__label" for="sample4">Postleitzahl ...</label>
+				    <span class="mdl-textfield__error">Input is not a number!</span>
+				  </div>
+
+				  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+				    <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sleepingPlaces" name ="prop-sleepingPlaces">
+				    <label class="mdl-textfield__label" for="sample4">Verfügbar Betten ...</label>
+				    <span class="mdl-textfield__error">Input is not a number!</span>
+				  </div>
+
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" type="submit"  id="formCompute">
+          Jetzt Gastgeber werden !
+        </button>
+
+      </form>
+      </br>
+
+		  </div>
+      <div class="mdl-cell mdl-cell--5-col"></div>
+
+		</div>
+
+
+
+    </main>
+
+      <footer class="mdl-mini-footer"> <!-- Bien placé le footer ici si on veut que le footer touche la fin de page. -->
+        <!-- Ici la partie de gauche de notre footer -->
+        <div class="mdl-mini-footer__left-section">
+          <div class="mdl-logo">Title</div>
+          <ul class="mdl-mini-footer__link-list">
+            <li><a href="#">Hilfe</a></li>
+            <li><a href="#">AGB & Datenschutz</a></li>
+          </ul>
+        </div>
+        <!-- Test pour mettre du texte au milieu, mais ne fonctionne qu'avec des mega footer
+        <div class="mdl-mini-footer__middle-section">
+        <div class="mdl-logo">TOURAILLE Pierre-Ugo <div>
+      </div>
+      Nénmoins après recherche on aurait pu mettre mon nom et prénom au milieu du footer, mais cela ne rendait aps très bien à l'aide de la balise <center> </center> appliquée à la zone de texte.-->
+      <!-- Ici la partie de droite de notre footer -->
+      <div class="mdl-mini-footer__right-section">
+        <div class="mdl-logo">MigrantsHelp</div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
